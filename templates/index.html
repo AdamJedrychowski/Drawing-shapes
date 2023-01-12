@@ -24,14 +24,37 @@
         <a class="navbar-brand" href="#">Sign Up</a>
     </nav>
 
-    <div class="d-flex justify-content-center align-items-center">
-        <div id="draw"></div>
-        <div class="btn-group-vertical">
-            <button class="btn btn-primary">Button 1</button>
-            <button class="btn btn-primary">Button 2</button>
-            <button class="btn btn-primary">Button 3</button>
-            <button class="btn btn-primary">Button 4</button>
-            <button class="btn btn-primary">Button 5</button>
+    <div class="container">
+        <div class="row">
+            <div id="draw" class="col-8"></div>
+            <div class="col-4">
+                <div class="row">
+                    <p class="col-4">
+                        <button type="button" class="btn btn-primary" onclick="start()">Play</button>
+                    </p>
+                    <p class="col-4">
+                        <button type="button" class="btn btn-primary" onclick="stop()">Stop</button>
+                    </p>
+                    <p class="col-4">
+                        <button type="button" class="btn btn-primary" onclick="clearContent()">Clear</button>
+                    </p>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <button type="button" class="btn btn-primary" onclick="addCircle()">Add</button>
+                    </div>
+                    <div class="col-4">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                            Circles <span class="caret"></span></button>
+                        <ul id="circlesList" class="dropdown-menu pre-scrollable" role="menu">
+                        </ul>
+                    </div>
+                    <div class="col-4">
+                        <button type="button" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+                <div id="circle"></div>
+            </div>
         </div>
     </div>
 </body>
