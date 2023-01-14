@@ -92,6 +92,8 @@ def save():
 
 @app.get("/load")
 def load_view():
+    if 'email' not in session:
+        return redirect('/')
     result = (db.session.query(CirclesSettings.id, func.count(Circle.id), func.sum(Circle.time))
                 .join(User, User.email == CirclesSettings.user).join(Circle, Circle.circles == CirclesSettings.id)
                 .filter(User.email == session['email']).group_by(CirclesSettings.id)).all()
@@ -103,6 +105,8 @@ def load_circles(id):
 
 @app.get("/circles/<id>")
 def get_circles(id):
+    if 'email' not in session:
+        return redirect('/')
     circles = Circle.query.filter(circles=id).all()
     print(id)
     return jsonify([{'radius': circle.radius, 'time': circle.time} for circle in circles])
