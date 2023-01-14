@@ -13,7 +13,7 @@ canvas {
   border-radius: 20px;
 }
 
-.container {
+#container {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -22,5 +22,20 @@ canvas {
 
 #circle {
   position : absolute;
-  bottom   : 0;
+  bottom: 0;
+}
+
+h2 {
+  text-align:center;
+  margin: .5em 0;
+}
+
+header {
+  margin-top: 5%;
+}
+
+#circlesList {
+  max-height: 300px;
+  overflow-y: auto;
+  width: 100%;
 }
