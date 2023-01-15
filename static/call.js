@@ -8,10 +8,6 @@ function saveRec() {
     }).catch(error => console.error('Error:', error));
 }
 
-function load() {
-    alert(1);
-}
-
 function apply(num) {
     fetch('/circles/'+num, { method: 'GET' })
     .then(res => res.json()).then(data => {
@@ -26,5 +22,7 @@ function apply(num) {
 
 function deleteRec(num) {
         fetch('/delete/'+num, { method: 'DELETE' }).catch(error => console.error('Error:', error));
-        document.getElementById('circle-'+num).remove();
+        var node = document.getElementById('circle-'+num);
+        node.nextElementSibling.remove();
+        node.remove();
 }

@@ -1,5 +1,5 @@
 var circles = [];
-var i = 0;
+var i = 0, time = 1;
 var path = [];
 
 function setup() {
@@ -47,12 +47,21 @@ function draw() {
         line(width / 2 + path[j][0], height / 2 + path[j][1], width / 2 + path[j + 1][0], height / 2 + path[j + 1][1]);
     }
     i += Math.PI / 30;
+
+    // if(frameCount/60 >= time) {
+    //     i = 0;
+    //     path = [];
+    //     frameCount = 0;
+    // }
 }
 
 function setCircle(num) {
     path = [];
     var r = document.getElementById('rad').value, t = document.getElementById('time').value;
+    // if(circles.length > num) time /= circles[num][1];
+    // time *= t;
     circles[num] = [r,t];
+    // frameCount = 0;
     document.getElementById("node-"+(num+1)).textContent = "R="+r+", T="+t;
 }
 

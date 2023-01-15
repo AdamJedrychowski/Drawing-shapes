@@ -17,17 +17,43 @@
             </tr>
         </thead>
         <tbody>
-            {% for x in circles %}
+            {% for i, x in circlesSettings|enumerate %}
             <tr id='circle-{{ x[0] }}'>
-                <th scope="row"><a href="{{ url_for('load_circles', id=x[0]) }}">+</a></td>
+                <th scope="row"><button type="button" class="btn btn-default btn-sm" data-toggle="collapse" data-target="#collapse-{{ x[0] }}" style="color:#007bff;">+</button></td>
                 <td>{{ x[1] }}</td>
                 <td>{{ x[2] }}</td>
                 <td><button type="button" onclick="apply({{ x[0] }})" class="btn btn-default btn-sm">Apply</button></td>
                 <td><button type="button" onclick="deleteRec({{ x[0] }})" class="close" style="color:red;">&times;</button></td>
             </tr>
+            <tr>
+                <td colspan="3">
+                    <div id="collapse-{{ x[0] }}" class="collapse">
+                        <table class="table">
+                            <thead class="thead-light">
+                              <tr>
+                                <th>Circle number</th>
+                                <th>Radius</th>
+                                <th>Time</th>
+                              </tr>
+                            </thead>
+                            <tbody id="show-circle-{{ x[0] }}">
+                            {% for circle in circles[i] %}
+                                <tr>
+                                    <th scope="row">{{ loop.index }}</th>
+                                    <th>{{ circle[0] }}</th>
+                                    <th>{{ circle[1] }}</th>
+                                </tr>    
+                            {% endfor %}
+                            </tbody>
+                          </table>
+                          
+                    </div>
+                </td>
+            </tr>
             {% endfor %}
         </tbody>
     </table>
+
 </main>
 
 {% endblock %}
