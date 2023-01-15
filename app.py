@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, redirect, jsonify
+from flask import Flask, render_template, request, session, redirect, jsonify, flash, get_flashed_messages
 from jinja2 import Environment
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import func
@@ -56,10 +56,13 @@ def register_view():
     if 'email' in session:
         session.pop('email', None)
         return redirect('/')
-    return render_template('register.html')
+    return render_template('register.html', failed=get_flashed_messages())
 
 @app.post("/register")
 def register():
+    if any(db.session.query(User).filter_by(email=request.form['email'])):
+        flash(True)
+        return redirect('/register')
     user = User(name=request.form['name'], surname=request.form['surname'], email=request.form['email'], password=request.form['password'])
     db.session.add(user)
     db.session.commit()
@@ -70,7 +73,7 @@ def login_view():
     if 'email' in session:
         session.pop('email', None)
         return redirect('/')
-    return render_template('login.html')
+    return render_template('login.html', failed=get_flashed_messages())
 
 @app.post("/login")
 def login():
@@ -78,6 +81,7 @@ def login():
     if user and user.password == request.form['password']:
         session['email'] = request.form['email']
         return redirect('/')
+    flash(True)
     return redirect('/login')
 
 @app.get("/logout")
@@ -112,7 +116,7 @@ def load_view():
 def get_circles(id):
     if 'email' not in session:
         return redirect('/')
-    circles = Circle.query.filter(circles=id).all()
+    circles = db.session.query(Circle).filter_by(circles=id).all()
     print(id)
     return jsonify([{'radius': circle.radius, 'time': circle.time} for circle in circles])
 

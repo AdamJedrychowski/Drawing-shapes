@@ -3,9 +3,9 @@
 
 <div id="container" class="container">
     <div class="row justify-content-center">
-        <div class="col-md-4">
+        <div class="col-md-5">
             <div class="card">
-                <div class="card-header text-center">Login</div>
+                <div class="card-header text-center h5">Login</div>
                 <div class="card-body">
                     <form name="my-form" action="/login" method="POST">
                         <div class="form-group">
@@ -22,11 +22,19 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6 offset-md-4">
+                        <div class="text-center">
                             <button type="submit" class="btn btn-primary">Submit</button>
-                            <!-- User does not exist -->
                         </div>
+
                     </form>
+                    {% if failed %}
+                    <div class="text-center">
+                        <div class="alert alert-danger alert-dismissible in mt-2 mb-0 d-inline-block text-center">
+                            <div class="small">This email or password isn't correct.<br>Please try again.</div>
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        </div>                    
+                    </div>
+                    {% endif %}
                 </div>
             </div>
         </div>

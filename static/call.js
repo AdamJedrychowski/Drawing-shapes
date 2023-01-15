@@ -15,8 +15,8 @@ function apply(num) {
         for (var circle of data) {
             circles.push({'radius': circle.radius, 'time': circle.time});
         }
-        alert(encodeURIComponent(JSON.stringify([])));
-        window.location.href = '/?circles' + encodeURIComponent(JSON.stringify(circles));//problem
+        document.cookie = "circles=" + JSON.stringify(circles) + ";";
+        window.location.href = '/';
     }).catch(error => console.error('Error:', error));
 }
 

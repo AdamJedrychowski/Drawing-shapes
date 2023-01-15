@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card">
-                <div class="card-header text-center">Registration</div>
+                <div class="card-header text-center h5">Registration</div>
                 <div class="card-body">
                     <form name="my-form" action="/register" method="POST">
                         <div class="form-group row">
@@ -39,7 +39,14 @@
                         <div class="col-md-6 offset-md-4">
                             <button type="submit" class="btn btn-primary">Register</button>
                         </div>
-                        <!-- User exist -->
+                        {% if failed %}
+                        <div class="text-center">
+                            <div class="alert alert-danger alert-dismissible in mt-3 mb-0 d-inline-block text-center">
+                                <div class="small">Registration failed. The email address provided may be registered already.</div>
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            </div>                    
+                        </div>
+                        {% endif %}
                     </form>
                 </div>
             </div>
